@@ -14,9 +14,9 @@ dnf5 install -y fish
   
 
 # WM and QShell
-sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
 
-sudo dnf install noctalia-shell
+sudo dnf install -y noctalia-shell
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
