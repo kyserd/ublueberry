@@ -10,19 +10,23 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # System packages
-dnf5 install -y fish
+dnf5 install -y \
+  fish \
+  foot
   
+#Install Niri
+dnf5 -y copr enable yalter/niri 
+dnf5 -y install niri
+dnf5 -y copr disable yalter/niri
+
+# systemctl enable niri
 
 # WM and QShell
 sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
-
 sudo dnf install -y noctalia-shell
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
+
+mkdir -p /etc/niri/
+cp /ctx/niri-config.kdl /etc/niri/config.kdl
 
 #### Example for enabling a System Unit File
 
