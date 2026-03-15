@@ -9,9 +9,14 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
-# this installs a package from fedora repos
-dnf5 install -y tmux 
+# System packages
+dnf5 install -y fish
+  
 
+# WM and QShell
+sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+
+sudo dnf install noctalia-shell
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
