@@ -94,9 +94,14 @@ done
 #######################################################################
 ### Enable Services
 #######################################################################
-log "Installing sddm...."
+log "Enabling sddm...."
 systemctl set-default graphical.target
 systemctl enable sddm.service
+
+log "Enabling ssh agent"
+mkdir -p /etc/systemd/user/
+cp /ctx/ssh-agent.service /etc/systemd/user/ssh-agent.service
+systemctl --global enable ssh-agent.service
 
 #######################################################################
 ### Copy files to /etc
